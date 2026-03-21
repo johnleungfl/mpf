@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>導師MPF登記表格</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+        body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
+
+        .content-viewer {
+            overflow-y: auto;
+            background: #f8fafc;
+            padding: 0 16px;
+            min-height: calc(100vh - 180px);
+        }
+        .content-viewer img {
+            width: 100%;
+            display: block;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .footer-warning {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fefce8;
+            border-top: 2px solid #facc15;
+            padding: 10px;
+            text-align: center;
+            font-size: 13px;
+            color: #854d0e;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- 主應用程式 -->
+    <div id="main-app" class="min-h-screen pb-12">
+        <nav class="bg-white shadow-sm border-b sticky top-0 z-50">
+            <div class="max-w-6xl mx-auto px-6 py-4">
+                <h1 class="text-2xl font-bold text-center">導師MPF登記表格</h1>
+            </div>
+        </nav>
+
+        <!-- 圖片瀏覽區域 -->
+        <div class="content-viewer max-w-6xl mx-auto">
+            <h2 class="text-2xl font-bold mb-4 sticky top-0 bg-white py-3 z-10">瀏覽文件</h2>
+            <div id="document-viewer"></div>
+
+            <!-- 下載按鈕 -->
+            <div class="text-center py-8">
+                <a href="MPF登記表格.pdf" download="MPF登記表格.pdf"
+                   class="inline-block bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-2xl text-lg font-semibold">
+                    下載 PDF 文件
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部警示 -->
+    <div class="footer-warning">
+        此為參考樣本，請仔細閱讀文件。
+    </div>
+
+    <script>
+        // 載入圖片
+        function loadImages() {
+            const viewer = document.getElementById('document-viewer');
+            for (let i = 1; i <= 12; i++) {
+                const img = document.createElement('img');
+                img.src = `A${i}.jpeg`;
+                img.alt = `文件頁面 ${i}`;
+                viewer.appendChild(img);
+            }
+        }
+
+        window.onload = () => {
+            loadImages();
+        };
+    </script>
+</body>
+</html>
