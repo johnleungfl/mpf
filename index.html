@@ -71,23 +71,17 @@
     </div>
 
     <script>
-        // 載入圖片 — 手動逐一插入確保順序正確
         function loadImages() {
-            const viewer = document.getElementById('document-viewer');
-            const fileNames = [
-                'A1.jpeg', 'A2.jpeg', 'A3.jpeg', 'A4.jpeg',
-                'A5.jpeg', 'A6.jpeg', 'A7.jpeg', 'A8.jpeg',
-                'A9.jpeg', 'A10.jpeg', 'A11.jpeg', 'A12.jpeg'
-            ];
-
-            fileNames.forEach(function(name, index) {
-                const img = document.createElement('img');
-                img.src = name;
-                img.alt = '文件頁面 ' + (index + 1);
-                img.style.order = String(index);
+            var viewer = document.getElementById('document-viewer');
+            // 使用零填充檔名 A01–A12，避免 Safari 字串排序錯誤
+            for (var i = 1; i <= 12; i++) {
+                var padded = (i < 10 ? '0' : '') + i;   // "01", "02", ... "12"
+                var img = document.createElement('img');
+                img.src = 'A' + padded + '.jpeg';
+                img.alt = '文件頁面 ' + i;
                 img.loading = 'lazy';
                 viewer.appendChild(img);
-            });
+            }
         }
 
         window.onload = function() {
